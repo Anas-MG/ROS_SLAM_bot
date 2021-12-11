@@ -24,7 +24,7 @@ src="https://user-images.githubusercontent.com/49666154/145496403-223023c8-823d-
 ###### 4-Four DC motors 3-6 volts with wheels
 ###### 5-10k mAh Power supply 
 ###### 6-9V battery
-#
+
 ## Setting up Rasbperry Pi for ROS remote connection
 ##### Firstly the Rasbperry Pi needs a system that has ROS in order to work with YDLidar, To shortcut this step i've dowloaded the Ubuntu 16.04 Xenial with pre-installed ROS from Ubiquity Robotics. The instructions are explained on the website. Visit https://downloads.ubiquityrobotics.com/pi.html
 ##### My laptop machine is ubuntu 20.04 machine with ROS Noetic. Because this will be my main machine for ROS operations.
@@ -45,6 +45,21 @@ $ pifi add YOURNETWOKNAME YOURNETWORKPASSWORD
 ````
 $ ssh ubuntu@'Rasbperry Pi IP'
 ````
+
+## Testing Lidar with Rasbperry Pi:
+again iam using the YDLIDAR X2L for this build. The first step is to install the necessary drivers which simply is a ROS package.
+````
+$ cd catkin_ws/src 
+$ git clone https://github.com/YDLIDAR/ydlidar_ros
+$ catkin_make
+$ roscd ydlidar_ros/startup
+$ sudo chmod 777 ./*
+$ sudo sh initenv.sh
+$ source catkin_ws/devel/setup.bash.
+Run catkin_make again.
+````
+##### Then I tested the lidar with ``roslaunch ydlidar_ros lidar.launch``. and Visualize the result scans in my laptop machine with Rviz, by adding the topic /scan.
+
 #
 ### L298N H-bridge motor driver  
 <img src="https://user-images.githubusercontent.com/49666154/128776326-36a2416f-9356-49f9-842e-ab9bff2704f0.jpeg" width="300px" > <img src="https://user-images.githubusercontent.com/49666154/128803887-7bc041e8-9c74-42aa-8f75-aa2c68efa30d.png" width="400px" >
