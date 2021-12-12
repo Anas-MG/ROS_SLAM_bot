@@ -94,7 +94,7 @@ $ catkin_make
 <img src="https://user-images.githubusercontent.com/49666154/145665077-49dca7bd-78b3-4274-acd1-1f0f2671fb93.jpg" width="500px" >
 
 ## Setting Arduino With ROS
-##### my goal here is getting commands from the Raspberry Pi to the Arduino to move the motor. 
+##### The goal here is getting commands from the Raspberry Pi to the Arduino to move the motor. 
 ##### Firstly I needed to Install rosserial, a ROS module that enables Arduino-ROS communication, on both the Raspberry Pi and the Arduino to achieve that.
 - ##### On Arduino IDE, I installed the rosserial library. I found it the easiest to do it from the IDE itself by searching for 'rosserial' in the Library Manager and install it. 
 - ##### On the Rasbperry pi: 
@@ -126,11 +126,11 @@ $ source /catkin_ws/devel/setup.bash.
 ````
 ###### Note: before this step I've increased the Rasbperry Pi swap space to 1G
 
-##### By Reaching this point I needed to make a couple of modifications to the Hector SLAM tutorial files in order for them to work with my build. I firstly toke a note of the transformations available to me on the \tf topic comming from the lidar node, and the reference frames it uses.
+##### By Reaching this point I made a couple of modifications to the Hector SLAM tutorial files in order for them to work with my build. I firstly toke a note of the transformations available to me on the \tf topic comming from the lidar node, and the reference frames it uses.
 ![Screenshot from 2021-12-11 17-59-19](https://user-images.githubusercontent.com/49666154/145697600-e4bb856b-373e-47b8-a0ff-586c53f8ffa8.png)
 
-##### As you can see It has only two frames, /base_footprint and laser_frame. So I've modified the files that I'll be using for the project
-###### File catkin_ws/src/hector_slam/hector_mapping/launch/mapping_default.launch:
+##### As you can see It has only two frames, /base_footprint and laser_frame. So I modified the necessary files as shown:
+- - ###### File catkin_ws/src/hector_slam/hector_mapping/launch/mapping_default.launch:
 - ##### At the top of the file, I changed the first line to the second.
 ````
 <arg name="odom_frame" default="nav"/>
@@ -141,7 +141,7 @@ $ source /catkin_ws/devel/setup.bash.
 <node pkg="tf" type="static_transform_publisher" name="map_nav_broadcaster" args="0 0 0 0 0 0 map nav 100"/>
 <node pkg="tf" type="static_transform_publisher" name="map_nav_broadcaster" args="0 0 0 0 0 0 base_footprint laser_frame 100"/>
 ````
-###### File ~/catkin_ws/src/hector_slam/hector_slam_launch/launch/tutorial.launch
+- - ###### File ~/catkin_ws/src/hector_slam/hector_slam_launch/launch/tutorial.launch
 ##### I've changed from/to: 
 ````<param name="/use_sim_time" value="true"/>
 <param name="/use_sim_time" value="false"/>
@@ -163,6 +163,8 @@ $ hector_slam_launch tutorial.launch
 ````
 $ roslaunch Navigator_bot bot_teleop.launch
 ````
+![Screenshot from 2021-11-18 06-38-54](https://user-images.githubusercontent.com/49666154/145700727-f0217789-04ec-4b18-8441-d066295f1a8c.png)
+
 - ###### On laptop machine terminal:
 ````
 rosrun rviz rviz 
