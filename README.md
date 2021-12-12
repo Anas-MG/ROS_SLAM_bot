@@ -144,15 +144,10 @@ $ source /catkin_ws/devel/setup.bash.
 ````<param name="/use_sim_time" value="true"/>
 <param name="/use_sim_time" value="false"/>
 ````
-
-- ##### Testing, In a first terminal run the lidar node ``roslauch ydlidar_ros lidar.launch``
-- ##### In a second terminal run Hector SLAM with roslaunch ````hector_slam_launch tutorial.launch````
-- ##### For testing the results in Rviz run ``rosrun rviz rviz``. Choose the /map topic to visualize the map that was created.
-
 #
 
 
-##### After setting up everything the needed operations to create a map will be: 
+### Ros Operations after building the robot: 
 - ###### On Rasbperry Pi terminals:
 ````
 # First terminal
@@ -161,10 +156,10 @@ $ roslauch ydlidar_ros lidar.launch
 $ hector_slam_launch tutorial.launch
 ````
 - ##### For the rosserial port node and the teleop keyboard node I've created simple package that containes a launch file for both nodes.
-> checkout: Navigator_bot folder
-###### To launch the file in Rasbperry Pi:
+> checkout: Navigator_bot folder it can be cloned and used easly
+###### Runing the launch file on Rasbperry Pi:
 ````
-roslaunch Navigator_bot bot_teleop.launch
+$ roslaunch Navigator_bot bot_teleop.launch
 ````
 - ###### On laptop machine terminal:
 ````
