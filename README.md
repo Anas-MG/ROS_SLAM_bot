@@ -1,9 +1,9 @@
 # ROS SLAM bot with Arduino, Rasbperry Pi
-##### This project is for building a robot and programming it to autonomously navigate a pre-built map. I'll walkthrough what I did in order to build this project for an autonomous ROS stack on a Raspberry Pi for Teleoperation, mapping, localization and navigation.
+#### This project is for building a robot and programming it to autonomously navigate a pre-built map. I'll walkthrough what I did in order to build this project for an autonomous ROS stack on a Raspberry Pi for Teleoperation, mapping, localization and navigation.
 
 <img 
 src="https://user-images.githubusercontent.com/49666154/145496403-223023c8-823d-47cd-9dff-706a4a9c5c3b.jpg" width="700px"  > 
-
+#
 ### First of all What is SLAM?
 
 - #### One of the popular applications of ROS is SLAM(Simultaneous Localization and Mapping). The objective of the SLAM in mobile robotics is constructing and updating the map of an unexplored environment with help of the available sensors attached to the robot which is will be used for exploring.
@@ -24,28 +24,28 @@ src="https://user-images.githubusercontent.com/49666154/145496403-223023c8-823d-
 ###### 5-10k mAh Power supply 
 ###### 6-9V battery
 
-## Setting up Rasbperry Pi for ROS remote connection
-##### Firstly the Rasbperry Pi needs a system that has ROS in order to work with YDLidar, To shortcut this step i've dowloaded the Ubuntu 16.04 Xenial with pre-installed ROS from Ubiquity Robotics. The instructions are explained on the website. Visit https://downloads.ubiquityrobotics.com/pi.html
+## Setting up Raspberry Pi for ROS remote connection
+##### Firstly the Raspberry Pi needs a system that has ROS in order to work with YDLidar, To shortcut this step i've dowloaded the Ubuntu 16.04 Xenial with pre-installed ROS from Ubiquity Robotics. The instructions are explained on the website. Visit https://downloads.ubiquityrobotics.com/pi.html
 ##### On laptop machine I installed ubuntu 20.04 with ROS Noetic. Because this will be my main machine for ROS operations.
 ##### On Both machines, I've set the ROS_IP and ROSMASTER_URI in the 'bashrc', Its important in order to access ROS communication masseges.
-- ##### On The Rasbperry Pi machine ROS_IP and ROS_MASTER_URI are same as the machine's network ip
-- ##### On my laptop ROS_IP is the machine IP and ROS_MASTER_URI is the Rasbperry pi's IP. Because The ROS master node is should run on the Rasbperry pi machine. 
+- ##### On The Raspberry Pi machine ROS_IP and ROS_MASTER_URI are same as the machine's network ip
+- ##### On my laptop ROS_IP is the machine IP and ROS_MASTER_URI is the Rasbperry pi's IP. Because The ROS master node is should run on the Raspberry pi machine. 
 ##### example:
 ##### 
 ```` 
 Rasbperry pi bashrc: export ROS_IP=192.168.200.228 export ROS_MASTER_URI=http://192.168.200.228:11311
 Laptop bashrc: export ROS_IP=192.168.200.123 export ROS_MASTER_URI=http://192.168.200.228:11311
 ````
-- ##### Connecting the Rasbperry Pi to the wifi network (The laptop machine needs to connect to the same network )
+- ##### Connecting the Raspberry Pi to the wifi network (The laptop machine needs to connect to the same network )
 ```` 
 $ pifi add YOURNETWOKNAME YOURNETWORKPASSWORD 
 ````
-- ##### Connecting to the Rasbperry Pi from my laptop machine over ssh (the ip would be different): 
+- ##### Connecting to the Raspberry Pi from my laptop machine over ssh (the ip would be different): 
 ````
 $ ssh ubuntu@192.168.100.202
 ````
 
-## Testing Lidar with Rasbperry Pi:
+## Testing Lidar with Raspberry Pi:
 again iam using the YDLIDAR X2L for this build. The first step is to install the necessary drivers which simply is a ROS package.
 ````
 $ cd catkin_ws/src 
@@ -58,7 +58,7 @@ $ sudo sh initenv.sh
 $ source catkin_ws/devel/setup.bash.
 $ catkin_make 
 ````
-##### Then to run the lidar node on the Rasbperry Pi  ``roslaunch ydlidar_ros lidar.launch``.
+##### Then to run the lidar node on the Raspberry Pi  ``roslaunch ydlidar_ros lidar.launch``.
 ##### and to Visualize the scans in the other machine ``rosrun rviz rviz``, and by adding the topic /scan the scans should be there as shown:
 ![Screenshot from 2021-12-11 16-42-38](https://user-images.githubusercontent.com/49666154/145696448-d6bf2a4e-48dc-41fe-aeda-17d86d1aa535.png)
 
@@ -83,13 +83,13 @@ $ catkin_make
 - ##### Dc motors right side: Positive to out4,Negative to out3
 - ##### Dc motors left side: Positive to out1,Negative to out2
 - #####  9V Battery connected to L298N GND and VCC
-- #####  10k mAh power supply connected to Rasbperry pi4
-- ##### Arduino and  YDLidar are powerd by the rasbperry pi usb ports.
+- #####  10k mAh power supply connected to Raspberry pi4
+- ##### Arduino and YDLidar are powerd by the raspberry pi usb ports.
 
 ## Circuit Diagram:
 ##### Arduino and L298N
 ![Screenshot (254)](https://user-images.githubusercontent.com/49666154/145664909-43aead89-b663-4c01-b140-507947246565.png)
-##### The Arduino and YDLidar are connected to the rasbperry pi usb ports as shown
+##### The Arduino and YDLidar are connected to the raspberry pi usb ports as shown
 <img src="https://user-images.githubusercontent.com/49666154/145665077-49dca7bd-78b3-4274-acd1-1f0f2671fb93.jpg" width="500px" >
 
 ## Setting Arduino With ROS
@@ -123,7 +123,7 @@ $ cd ..
 $ catkin_make
 $ source /catkin_ws/devel/setup.bash.
 ````
-###### Note: before this step I've increased the Rasbperry Pi swap space to 1G
+###### Note: before this step I've increased the Raspberry Pi swap space to 1G
 
 ##### By Reaching this point I made a couple of modifications to the Hector SLAM tutorial files in order for them to work with my build. I firstly toke a note of the transformations available to me on the \tf topic comming from the lidar node, and the reference frames it uses.
 ![Screenshot from 2021-12-11 17-59-19](https://user-images.githubusercontent.com/49666154/145697600-e4bb856b-373e-47b8-a0ff-586c53f8ffa8.png)
@@ -149,7 +149,7 @@ $ source /catkin_ws/devel/setup.bash.
 
 
 ### Ros Operations after building the robot: 
-- ###### On Rasbperry Pi terminals:
+- ###### On Raspberry Pi terminals:
 ````
 # First terminal
 $ roslauch ydlidar_ros lidar.launch
@@ -158,7 +158,7 @@ $ hector_slam_launch tutorial.launch
 ````
 - ##### For the rosserial port node and the teleop keyboard node I've created simple package that containes a launch file for both nodes.
 > checkout: Navigator_bot folder.
-###### Runing the launch file on Rasbperry Pi:
+###### Runing the launch file on Raspberry Pi:
 ````
 $ roslaunch Navigator_bot bot_teleop.launch
 ````
