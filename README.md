@@ -163,7 +163,8 @@ $ hector_slam_launch tutorial.launch
 ````
 $ roslaunch Navigator_bot bot_teleop.launch
 ````
-![Screenshot from 2021-11-18 06-38-54](https://user-images.githubusercontent.com/49666154/145700727-f0217789-04ec-4b18-8441-d066295f1a8c.png)
+
+<img src="https://user-images.githubusercontent.com/49666154/145700727-f0217789-04ec-4b18-8441-d066295f1a8c.png" width="510px" > 
 
 - ###### On laptop machine terminal:
 ````
