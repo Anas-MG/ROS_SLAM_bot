@@ -1,11 +1,10 @@
 # ROS SLAM bot with Arduino, Rasbperry Pi
-##### This project is for building a robot and programming it to autonomously navigate a pre-built map. 
-##### I'll walkthrough setting up an autonomous ROS stack on a Raspberry Pi for Teleoperation, mapping, localization and navigation.
+##### This project is for building a robot and programming it to autonomously navigate a pre-built map. I'll walkthrough what I did in order to build this project for an autonomous ROS stack on a Raspberry Pi for Teleoperation, mapping, localization and navigation.
 
 <img 
 src="https://user-images.githubusercontent.com/49666154/145496403-223023c8-823d-47cd-9dff-706a4a9c5c3b.jpg" width="700px"  > 
 
-### What is SLAM?
+### First of all What is SLAM?
 
 - #### One of the popular applications of ROS is SLAM(Simultaneous Localization and Mapping). The objective of the SLAM in mobile robotics is constructing and updating the map of an unexplored environment with help of the available sensors attached to the robot which is will be used for exploring.
 
