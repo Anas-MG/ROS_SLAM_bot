@@ -158,7 +158,7 @@ $ roslauch ydlidar_ros lidar.launch
 $ hector_slam_launch tutorial.launch
 ````
 - ##### For the rosserial port node and the teleop keyboard node I've created simple package that containes a launch file for both nodes.
-> checkout: Navigator_bot folder it can be cloned and used easly
+> checkout: Navigator_bot folder.
 ###### Runing the launch file on Rasbperry Pi:
 ````
 $ roslaunch Navigator_bot bot_teleop.launch
