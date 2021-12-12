@@ -171,7 +171,20 @@ $ roslaunch Navigator_bot bot_teleop.launch
 rosrun rviz rviz 
 ````
 - ##### Then to create a map  the robot needs to move around the surface to scan in Rviz.
+- ##### After the map is completed to save it I installed map server on my laptop machine:
+````
+$ sudo apt-get install ros-kinetic-map-server
+$ rosrun map_server map_saver -f my_map
+````
 ##### Result 
 ![Screenshot from 2021-12-11 18-29-56](https://user-images.githubusercontent.com/49666154/145698152-4ca6cffa-e1ef-40bf-a928-7bfd9bb85dd3.png)
 
+### Localization 
+##### In order for the navigation stack to be able to localize the robot, it needs access to the map I have just saved. Luckily its an easy task to do! The straight way to do this is by running:
+``
+rosrun map-server map-server my_map.yaml
+``
+##### And then the map is visualized with rviz and the robot is localized in it.
+#
+Thats is I hope you enjoyed, And please refer any issue that encounter you while following the project.
 
