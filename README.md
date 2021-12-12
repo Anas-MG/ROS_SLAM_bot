@@ -82,8 +82,37 @@ $ catkin_make install
 - ##### For Controling Arduino motors from ros I've created an arduino sketch. Its An example for a very simple sketch that subscribes to /cmd_vel topic and supports moving on each side and stopping motion.
 > Checkout:  arduino_car_ros.ino Sketch file.
 
+
+## Connection :
+#### L298N H-bridge motors driver  
+<img src="https://user-images.githubusercontent.com/49666154/128776326-36a2416f-9356-49f9-842e-ab9bff2704f0.jpeg" width="250px" > <img src="https://user-images.githubusercontent.com/49666154/128803887-7bc041e8-9c74-42aa-8f75-aa2c68efa30d.png" width="350px" >
+###### L298N is a dual H-Bridge motor driver which allows speed and direction control of two or four DC motors at the same time.
+
+#### from arduino to L298N Driver
+- ##### ~11 connected to ENA
+- #####  12 connected to INA1
+- #####  13 connected to INA2
+- #####   8 connected to INB4
+- #####   7 connected to INB3
+- #####  ~9 connected to ENB
+- ##### GND connected to GND
+
+#### Motors and Power supllies:
+ ##### Two DC motors are conected to each side of L298N in parallel:
+- ##### Dc motors right side: Positive to out4,Negative to out3
+- ##### Dc motors left side: Positive to out1,Negative to out2
+- #####  9V Battery connected to L298N GND and VCC
+- #####  10k mAh power supply connected to Rasbperry pi4
+- ##### Arduino and  YDLidar are powerd by the rasbperry pi usb ports.
+
+## Circuit Diagram:
+##### Arduino and L298N
+![Screenshot (254)](https://user-images.githubusercontent.com/49666154/145664909-43aead89-b663-4c01-b140-507947246565.png)
+##### The Arduino and YDLidar are connected to the rasbperry pi usb ports as shown
+<img src="https://user-images.githubusercontent.com/49666154/145665077-49dca7bd-78b3-4274-acd1-1f0f2671fb93.jpg" width="500px" >
+
 ## Installing Hector-SLAM
-##### This part is exciting! We will now add the mapping and (a bit later) localization functionality to our robot. We use the Hector-SLAM package. It enables us to create the maps (with a Lidar alone, no IMU needed) that I could later use for localization and navigation.
+##### This part is exciting! We will now add the mapping to our robot. I used the Hector-SLAM package. It enables the robot to create the maps (with a Lidar alone, no IMU needed) that I could later use for localization and navigation.
 
 ```` 
 $ cd catkin_ws/src
@@ -120,33 +149,6 @@ $ source /catkin_ws/devel/setup.bash.
 - ##### For testing the results in Rviz run ``rosrun rviz rviz``. Choose the /map topic to visualize the map that was created.
 
 #
-
-## Connection :
-#### from arduino to L298N Driver
-- ##### ~11 connected to ENA
-- #####  12 connected to INA1
-- #####  13 connected to INA2
-- #####   8 connected to INB4
-- #####   7 connected to INB3
-- #####  ~9 connected to ENB
-- ##### GND connected to GND
-#### L298N H-bridge motor driver  
-<img src="https://user-images.githubusercontent.com/49666154/128776326-36a2416f-9356-49f9-842e-ab9bff2704f0.jpeg" width="200px" > <img src="https://user-images.githubusercontent.com/49666154/128803887-7bc041e8-9c74-42aa-8f75-aa2c68efa30d.png" width="300px" >
-###### L298N is a dual H-Bridge motor driver which allows speed and direction control of two or four DC motors at the same time.
-#
-#### Motors and Power supllies:
- ##### Two DC motors are conected to each side of L298N in parallel:
-- ##### Dc motors right side: Positive to out4,Negative to out3
-- ##### Dc motors left side: Positive to out1,Negative to out2
-- #####  9V Battery connected to L298N GND and VCC
-- #####  10k mAh power supply connected to Rasbperry pi4
-- ##### Arduino and  YDLidar are powerd by the rasbperry pi usb ports.
-
-## Circuit Diagram:
-##### Arduino and L298N
-![Screenshot (254)](https://user-images.githubusercontent.com/49666154/145664909-43aead89-b663-4c01-b140-507947246565.png)
-##### The Arduino and YDLidar are connected to the rasbperry pi usb ports as shown
-<img src="https://user-images.githubusercontent.com/49666154/145665077-49dca7bd-78b3-4274-acd1-1f0f2671fb93.jpg" width="500px" >
 
 
 ##### After setting up everything the needed operations to create a map will be: 
