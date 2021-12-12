@@ -63,24 +63,6 @@ $ catkin_make
 ##### and to Visualize the scans in the other machine ``rosrun rviz rviz``, and by adding the topic /scan the scans should be there as shown:
 ![Screenshot from 2021-12-11 16-42-38](https://user-images.githubusercontent.com/49666154/145696448-d6bf2a4e-48dc-41fe-aeda-17d86d1aa535.png)
 
-## Setting Arduino With ROS
-##### my goal here is getting commands from the Raspberry Pi to the Arduino to move the motor. 
-##### Firstly I needed to Install rosserial, a ROS module that enables Arduino-ROS communication, on both the Raspberry Pi and the Arduino to achieve that.
-- ##### On Arduino IDE, I installed the rosserial library. I found it the easiest to do it from the IDE itself by searching for 'rosserial' in the Library Manager and install it. 
-- ##### On the Rasbperry pi: 
-````
-$ sudo apt-get install ros-kinetic-rosserial-arduino
-$ sudo apt-get install ros-kinetic-rosserial
-$ cd catkin_ws/src
-$ git clone https://github.com/ros-drivers/rosserial.git
-$ cd catkin_ws
-$ catkin_make
-$ catkin_make install
-````
-###### For more information. Visit http://wiki.ros.org/rosserial_arduino/Tutorials
-###### Note: i needed to override the cmake with a newer version in order to compile rosserial package. Because Ubiquity system has an old version. 
-- ##### For Controling Arduino motors from ros I've created an arduino sketch. Its An example for a very simple sketch that subscribes to /cmd_vel topic and supports moving on each side and stopping motion.
-> Checkout:  arduino_car_ros.ino Sketch file.
 
 
 ## Connection :
@@ -110,6 +92,25 @@ $ catkin_make install
 ![Screenshot (254)](https://user-images.githubusercontent.com/49666154/145664909-43aead89-b663-4c01-b140-507947246565.png)
 ##### The Arduino and YDLidar are connected to the rasbperry pi usb ports as shown
 <img src="https://user-images.githubusercontent.com/49666154/145665077-49dca7bd-78b3-4274-acd1-1f0f2671fb93.jpg" width="500px" >
+
+## Setting Arduino With ROS
+##### my goal here is getting commands from the Raspberry Pi to the Arduino to move the motor. 
+##### Firstly I needed to Install rosserial, a ROS module that enables Arduino-ROS communication, on both the Raspberry Pi and the Arduino to achieve that.
+- ##### On Arduino IDE, I installed the rosserial library. I found it the easiest to do it from the IDE itself by searching for 'rosserial' in the Library Manager and install it. 
+- ##### On the Rasbperry pi: 
+````
+$ sudo apt-get install ros-kinetic-rosserial-arduino
+$ sudo apt-get install ros-kinetic-rosserial
+$ cd catkin_ws/src
+$ git clone https://github.com/ros-drivers/rosserial.git
+$ cd catkin_ws
+$ catkin_make
+$ catkin_make install
+````
+###### For more information. Visit http://wiki.ros.org/rosserial_arduino/Tutorials
+###### Note: i needed to override the cmake with a newer version in order to compile rosserial package. Because Ubiquity system has an old version. 
+- ##### For Controling Arduino motors from ros I've created an arduino sketch. Its An example for a very simple sketch that subscribes to /cmd_vel topic and supports moving on each side and stopping motion.
+> Checkout:  arduino_car_ros.ino Sketch file.
 
 ## Installing Hector-SLAM
 ##### This part is exciting! We will now add the mapping to our robot. I used the Hector-SLAM package. It enables the robot to create the maps (with a Lidar alone, no IMU needed) that I could later use for localization and navigation.
