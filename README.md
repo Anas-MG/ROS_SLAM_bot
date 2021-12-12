@@ -128,8 +128,8 @@ $ source /catkin_ws/devel/setup.bash.
 - ##### ~11 connected to ENA
 - #####  12 connected to INA1
 - #####  13 connected to INA2
-- #####   8 connected to INB3
-- #####   7 connected to INB4
+- #####   8 connected to INB4
+- #####   7 connected to INB3
 - #####  ~9 connected to ENB
 - ##### GND connected to GND
 #### L298N H-bridge motor driver  
@@ -150,11 +150,27 @@ $ source /catkin_ws/devel/setup.bash.
 ##### The Arduino and YDLidar are connected to the rasbperry pi usb ports as shown
 <img src="https://user-images.githubusercontent.com/49666154/145665077-49dca7bd-78b3-4274-acd1-1f0f2671fb93.jpg" width="500px" >
 
-## ROS Operations:
-- #### Launch rosserial socket node so that the ESP32 connects to the machine:
-> roslaunch rosserial_server socket.launch
-- #### Launch Keybord node to control the robot: 
-> rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
- ###### Note: The program will switch Off the ESP32 blue led only when It's connected to the Rosserial server in the machine.
+##### After setting up everything the needed operations to create a map will be: 
+- ###### On Rasbperry Pi terminals:
+````
+# First terminal
+$ roslauch ydlidar_ros lidar.launch
+# Second terminal
+$ hector_slam_launch tutorial.launch
+````
+- ##### For the rosserial port node and the teleop keyboard node I've created simple package that containes a launch file for both nodes.
+> checkout file Navigator_bot
+###### To launch the file in Rasbperry Pi:
+````
+roslaunch Navigator_bot bot_teleop.launch
+````
+- ###### On laptop machine terminal:
+````
+rosrun rviz rviz 
+````
+- ##### Then to create a map  the robot needs to move around the surface to scan in Rviz.
+##### Result 
+![Screenshot from 2021-12-11 18-29-56](https://user-images.githubusercontent.com/49666154/145698152-4ca6cffa-e1ef-40bf-a928-7bfd9bb85dd3.png)
+
 
