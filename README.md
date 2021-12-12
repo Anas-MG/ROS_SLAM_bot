@@ -109,8 +109,10 @@ $ catkin_make install
 ````
 ###### For more information. Visit http://wiki.ros.org/rosserial_arduino/Tutorials
 ###### Note: i needed to override the cmake with a newer version in order to compile rosserial package. Because Ubiquity system has an old version. 
-- ##### For Controling Arduino motors from ros I've created an arduino sketch. Its An example for a very simple sketch that subscribes to /cmd_vel topic and supports moving on each side and stopping motion.
-> Checkout:  arduino_car_ros.ino Sketch file.
+- ##### For Controling Arduino motors by ROS I've created an arduino sketch that subscribes to /cmd_vel topic and supports moving on each side and stopping motion.
+> ###### Checkout:  arduino_car_ros.ino Sketch file.
+- ##### In order for the arduino to operate you'll need a rosserial and teleop nodes running which are explained in the Operation section.
+
 
 ## Installing Hector-SLAM
 ##### This part is exciting! We will now add the mapping to our robot. I used the Hector-SLAM package. It enables the robot to create the maps (with a Lidar alone, no IMU needed) that I could later use for localization and navigation.
